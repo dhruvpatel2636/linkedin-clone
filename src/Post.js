@@ -8,16 +8,21 @@ import { CiShare2 } from "react-icons/ci";
 import { IoMdSend } from "react-icons/io";
 
 const Post=forwardRef(({name,description,message,photoUrl},ref) =>{
+   const displayName = name ? name : "No Name";
   return (
     <div ref={ref} className="post">
       <div className="post_header">
-        <Avatar src={photoUrl} >{name[0]}</Avatar>
+        {/* Conditionally render Avatar based on the availability of photoUrl */}
+        {photoUrl ? (
+          <Avatar src={photoUrl}>{displayName[0]}</Avatar>
+        ) : (
+          <Avatar>{displayName[0]}</Avatar>
+        )}
         <div className="post_info">
-          <h2>{name}</h2>
+          <h2>{displayName}</h2>
           <p>{description}</p>
         </div>
       </div>
-
       <div className="post_body">
         <p>{message}</p>
       </div>
